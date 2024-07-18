@@ -63,8 +63,8 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Only allow a list of trusted parameters through.below the post model permits the title,description and keyword
     def post_params
-      params.require(:post).permit(:title, :description, :keyword)
+      params.require(:post).permit(:title, :description, :keyword,images: [])
     end
 end

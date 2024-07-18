@@ -13,7 +13,14 @@
     <strong>Keyword:</strong>
     <%= post.keyword %>
   </p>
+
 <p>
       <%= link_to "", post ,class:'post-link'%>
     </p>
+  <% post.images.each do |image| %>
+    <%= image_tag(image , style:"object-fit :cover; width: 250px; height: 600px;")  %>
+  <% end %>
+
+
+
 </div>
