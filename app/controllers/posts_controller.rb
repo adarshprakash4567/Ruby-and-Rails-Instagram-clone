@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
-
+  #below,If the user is not authenticated then it works expect the index ,show functions
+  before_action :authenticate_user!,except: [:index, :show]
   # GET /posts or /posts.json
   def index
     @posts = Post.all
@@ -10,11 +11,20 @@ class PostsController < ApplicationController
   def show
   end
 
+  def show
+    #Post 
+    @comment = @post.comments.build
+  end
+ 
+  
   # GET /posts/new
   def new
     @post = Post.new
   end
-
+  def myposts
+   
+    @posts = Post.all
+  end
   # GET /posts/1/edit
   def edit
   end
@@ -22,7 +32,8 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-
+    puts "Post Params: #{post_params.inspect}"
+    puts "Post ID: #{@post.id}"  # This should be nil for a new record
     respond_to do |format|
       if @post.save
         format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
@@ -63,8 +74,10 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
+
     # Only allow a list of trusted parameters through.below the post model permits the title,description and keyword
     def post_params
-      params.require(:post).permit(:title, :description, :keyword,images: [])
+      params.require(:post).permit(:title, :description, :keyword, :user_id, images: [])
     end
 end
+                                                                                  

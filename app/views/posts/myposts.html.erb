@@ -1,0 +1,11 @@
+<div id="posts" class="text-center">
+  <% if @posts.present? %>
+    <% @posts.each do |post| %>
+       <% if post.user.id == current_user.id %>
+      <%= render post %>
+       <%end%>
+    <% end %>
+  <% else %>
+    <p>No posts available.</p>
+  <% end %>
+</div>

@@ -8,6 +8,8 @@
   <div>
     <% invalid = post.errors.include?(:title)%>
     <%= form.label :title, style: "display: block" %>
+        <%= form.text_field :user_id , type: 'hidden' , value: current_user.id %>
+
     <%= form.text_field :title , class:'form-control' %>
   
     <%if invalid %>
