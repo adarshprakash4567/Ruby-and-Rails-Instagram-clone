@@ -22,6 +22,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 gem "bootsnap", require: false
 
+gem 'ransack', :github => 'activerecord-hackery/ransack', :branch => 'main'
 #My custom germs
 gem 'devise', '~> 4.9', '>= 4.9.3'
 group :development, :test do

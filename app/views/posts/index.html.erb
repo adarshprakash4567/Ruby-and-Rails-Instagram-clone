@@ -1,6 +1,10 @@
 <%= stylesheet_link_tag("post")%>
 <p style="color: green"><%= notice %></p>
-
+<%if user_signed_in? %>
+  <%if current_user.admin?%>
+  You are an admin
+  <%end%>
+<%end%>
 <h1>Posts</h1>
 
 <div id="posts" class="text-center">

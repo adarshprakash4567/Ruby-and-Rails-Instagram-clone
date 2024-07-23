@@ -1,0 +1,9 @@
+<div id='posts' class='text-center'>
+  <% if @users.present? %>
+    <% @users.each do |user| %>
+      <%= render user %>
+    <% end %>
+  <% else %>
+    No users found!
+  <% end %>
+</div>
