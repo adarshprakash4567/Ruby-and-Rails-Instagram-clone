@@ -25,6 +25,8 @@ gem "bootsnap", require: false
 gem 'ransack', :github => 'activerecord-hackery/ransack', :branch => 'main'
 #My custom germs
 gem 'devise', '~> 4.9', '>= 4.9.3'
+
+gem 'pagy'
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 end

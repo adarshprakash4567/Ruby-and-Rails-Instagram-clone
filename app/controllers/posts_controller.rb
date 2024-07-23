@@ -2,9 +2,22 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   #below,If the user is not authenticated then it works expect the index ,show functions
   before_action :authenticate_user!,except: [:index, :show]
-  # GET /posts or /posts.json
+  include Pagy::Backend
+
   def index
-    @posts = Post.all
+    # Fetch all posts, ordered by created_at in ascending order
+    
+    @posts = Post.order(:created_at => :asc)
+  
+    # Debugging output before pagination
+    puts "Total Posts Count: #{@posts.count}"
+  
+    # Initialize Pagy for pagination, limiting to 1 post per page
+
+    @pagy, @posts = pagy(@posts, limit: 2)
+  
+    # Debugging output after pagination
+    puts "Posts After Pagy: #{@posts.count}"
   end
 
   # GET /posts/1 or /posts/1.json
